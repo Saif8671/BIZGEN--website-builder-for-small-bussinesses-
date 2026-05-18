@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useAuth } from "@/hooks/use-auth"
+import { getEmailAuthErrorMessage, getOAuthAuthErrorMessage } from "@/lib/firebase-auth-errors"
 import { toast } from "sonner"
 
 const loginSchema = z.object({
@@ -48,23 +49,11 @@ export default function LoginPage() {
       toast.success("Welcome back!", {
         description: "You have signed in successfully.",
       })
-      window.location.href = "/dashboard"
+      router.replace("/dashboard")
     } catch (error: any) {
       console.error("Login error:", error)
-      let errorMessage = "Please check your email and password."
-      if (
-        error.code === "auth/invalid-credential" || 
-        error.code === "auth/user-not-found" || 
-        error.code === "auth/wrong-password"
-      ) {
-        errorMessage = "Invalid email or password. Please try again."
-      } else if (error.code === "auth/too-many-requests") {
-        errorMessage = "Too many login attempts. Please try again later."
-      } else if (error.code === "auth/internal-error") {
-        errorMessage = "Firebase auth is misconfigured. Check that Email/Password is enabled and localhost is added to Authorized domains in Firebase Authentication."
-      }
       toast.error("Sign in failed", {
-        description: errorMessage,
+        description: getEmailAuthErrorMessage(error),
       })
     } finally {
       setIsLoading(false)
@@ -78,15 +67,12 @@ export default function LoginPage() {
       toast.success("Welcome back!", {
         description: "Signed in successfully with Google.",
       })
-      window.location.href = "/dashboard"
+      router.replace("/dashboard")
     } catch (error: any) {
       console.error("Google sign in error:", error)
       if (error.code !== "auth/popup-closed-by-user") {
         toast.error("Google sign in failed", {
-          description:
-            error.code === "auth/internal-error"
-              ? "Check that Google sign-in is enabled and your current host is listed under Firebase Authentication Authorized domains."
-              : error.message || "An error occurred during authentication.",
+          description: getOAuthAuthErrorMessage(error, "Google"),
         })
       }
     } finally {
@@ -101,15 +87,12 @@ export default function LoginPage() {
       toast.success("Welcome back!", {
         description: "Signed in successfully with GitHub.",
       })
-      window.location.href = "/dashboard"
+      router.replace("/dashboard")
     } catch (error: any) {
       console.error("GitHub sign in error:", error)
       if (error.code !== "auth/popup-closed-by-user") {
         toast.error("GitHub sign in failed", {
-          description:
-            error.code === "auth/internal-error"
-              ? "Check that GitHub sign-in is enabled and your current host is listed under Firebase Authentication Authorized domains."
-              : "Could not authenticate with GitHub. Ensure it is enabled in your Firebase console.",
+          description: getOAuthAuthErrorMessage(error, "GitHub"),
         })
       }
     } finally {

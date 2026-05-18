@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useAuth } from "@/hooks/use-auth"
+import { getEmailAuthErrorMessage, getOAuthAuthErrorMessage } from "@/lib/firebase-auth-errors"
 import { toast } from "sonner"
 
 const signupSchema = z.object({
@@ -70,21 +71,11 @@ export default function SignupPage() {
       toast.success("Welcome to BizGen!", {
         description: `Your account is ready! Customized category: ${selectedCategory}`,
       })
-      window.location.href = "/dashboard"
+      router.replace("/dashboard")
     } catch (error: any) {
       console.error("Signup error:", error)
-      let errorMessage = "An error occurred during account creation."
-      if (error.code === "auth/email-already-in-use") {
-        errorMessage = "This email is already registered. Please sign in."
-      } else if (error.code === "auth/weak-password") {
-        errorMessage = "Password is too weak. Please use at least 8 characters."
-      } else if (error.code === "auth/invalid-email") {
-        errorMessage = "Please enter a valid email address."
-      } else if (error.code === "auth/internal-error") {
-        errorMessage = "Firebase auth is misconfigured. Check that Email/Password is enabled and localhost is added to Authorized domains in Firebase Authentication."
-      }
       toast.error("Registration failed", {
-        description: errorMessage,
+        description: getEmailAuthErrorMessage(error),
       })
     } finally {
       setIsLoading(false)
@@ -98,15 +89,12 @@ export default function SignupPage() {
       toast.success("Welcome to BizGen!", {
         description: "Account created successfully with Google.",
       })
-      window.location.href = "/dashboard"
+      router.replace("/dashboard")
     } catch (error: any) {
       console.error("Google signup error:", error)
       if (error.code !== "auth/popup-closed-by-user") {
         toast.error("Google sign up failed", {
-          description:
-            error.code === "auth/internal-error"
-              ? "Check that Google sign-in is enabled and your current host is listed under Firebase Authentication Authorized domains."
-              : error.message || "An error occurred during authentication.",
+          description: getOAuthAuthErrorMessage(error, "Google"),
         })
       }
     } finally {
@@ -121,15 +109,12 @@ export default function SignupPage() {
       toast.success("Welcome to BizGen!", {
         description: "Account created successfully with GitHub.",
       })
-      window.location.href = "/dashboard"
+      router.replace("/dashboard")
     } catch (error: any) {
       console.error("GitHub signup error:", error)
       if (error.code !== "auth/popup-closed-by-user") {
         toast.error("GitHub sign up failed", {
-          description:
-            error.code === "auth/internal-error"
-              ? "Check that GitHub sign-in is enabled and your current host is listed under Firebase Authentication Authorized domains."
-              : "Could not authenticate with GitHub. Ensure it is enabled in your Firebase console.",
+          description: getOAuthAuthErrorMessage(error, "GitHub"),
         })
       }
     } finally {

@@ -72,7 +72,7 @@ const item = {
 
 export function FeaturesSection() {
   return (
-    <section className="relative py-24">
+    <section id="features" className="relative scroll-mt-24 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center">

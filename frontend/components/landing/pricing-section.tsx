@@ -75,7 +75,7 @@ const plans = [
 
 export function PricingSection() {
   return (
-    <section className="relative py-24">
+    <section id="pricing" className="relative scroll-mt-24 py-24">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-accent/10 blur-[100px]" />

@@ -43,7 +43,7 @@ export function IndustriesSection() {
   const x2 = useTransform(scrollYProgress, [0, 1], [-200, 0])
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden py-24">
+    <section id="templates" ref={containerRef} className="relative overflow-hidden scroll-mt-24 py-24">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute top-1/2 left-1/4 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-accent/10 blur-[100px]" />

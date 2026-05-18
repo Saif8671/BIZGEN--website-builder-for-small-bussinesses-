@@ -49,7 +49,7 @@ export function CTASection() {
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <Link href="/templates">
+              <Link href="/#templates">
                 <Button size="lg" variant="outline" className="border-border hover:bg-secondary">
                   Browse Templates
                 </Button>

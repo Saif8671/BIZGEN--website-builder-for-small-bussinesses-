@@ -3,16 +3,16 @@ import { Sparkles } from "lucide-react"
 
 const footerLinks = {
   Product: [
-    { name: "Features", href: "/features" },
-    { name: "Templates", href: "/templates" },
-    { name: "Pricing", href: "/pricing" },
-    { name: "Examples", href: "/examples" },
+    { name: "Features", href: "/#features" },
+    { name: "Templates", href: "/#templates" },
+    { name: "Pricing", href: "/#pricing" },
+    { name: "Examples", href: "/#examples" },
   ],
   Company: [
     { name: "About", href: "/about" },
     { name: "Blog", href: "/blog" },
     { name: "Careers", href: "/careers" },
-    { name: "Contact", href: "/contact" },
+    { name: "Contact", href: "/#contact" },
   ],
   Resources: [
     { name: "Documentation", href: "/docs" },

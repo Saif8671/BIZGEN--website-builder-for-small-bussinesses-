@@ -79,10 +79,11 @@ export function HeroSection() {
 
         {/* AI Demo Preview */}
         <motion.div
+          id="examples"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="mt-16"
+          className="mt-16 scroll-mt-24"
         >
           <AIDemoPreview />
         </motion.div>

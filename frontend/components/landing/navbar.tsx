@@ -7,10 +7,10 @@ import { Menu, X, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
-  { href: "/features", label: "Features" },
-  { href: "/templates", label: "Templates" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/examples", label: "Examples" },
+  { href: "/#features", label: "Features" },
+  { href: "/#templates", label: "Templates" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/#examples", label: "Examples" },
 ]
 
 export function Navbar() {

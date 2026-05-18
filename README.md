@@ -163,6 +163,9 @@ SUPERVITY_WORKFLOW_ID=019e3856-2c75-7000-8be7-9a26150d6eda
 SUPERVITY_SOURCE=v1
 ```
 
+Also add every local and deployed frontend hostname you use to Firebase Authentication -> Settings -> Authorized domains.
+If you deploy preview builds, add the exact preview hostname too or Google/GitHub popup auth will fail with `auth/unauthorized-domain`.
+
 ---
 
 ### 3. Backend Configuration

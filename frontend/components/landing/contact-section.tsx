@@ -8,7 +8,7 @@ import { Mail, MessageSquare, Phone } from "lucide-react"
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-24 bg-muted/30">
+    <section id="contact" className="scroll-mt-24 bg-muted/30 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           <motion.div
