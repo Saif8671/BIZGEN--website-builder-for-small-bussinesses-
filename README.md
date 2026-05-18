@@ -172,33 +172,6 @@ Navigate to the `backend/` directory, duplicate the environment blueprint, and s
 cd ../backend
 cp .env.example .env
 ```
-
-Inside **`backend/.env`**:
-```env
-# Core API Settings
-APP_NAME=BIZGEN
-APP_VERSION=0.1.0
-DEBUG=true
-SECRET_KEY=your-dev-secret-key-change-in-production
-CORS_ORIGINS=http://localhost:3000,http://localhost:3001
-
-# Storage & Database Drivers
-DATABASE_URL=sqlite+aiosqlite:///./bizgen.db
-UPLOAD_DIR=./uploads
-
-# AI Capabilities (OpenRouter)
-OPENROUTER_API_KEY=sk-proj-did...
-OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
-
-# Firebase Admin Service SDK Integration
-FIREBASE_CREDENTIALS_PATH=./firebase-service-account.json
-
-# Image Processing & Deployments (Optional Production Integration)
-CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-CLOUDINARY_API_KEY=your_cloudinary_key
-CLOUDINARY_API_SECRET=your_cloudinary_secret
-VERCEL_API_TOKEN=your_vercel_token
-NETLIFY_API_TOKEN=your_netlify_token
 ```
 
 ---
